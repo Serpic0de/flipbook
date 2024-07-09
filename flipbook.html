@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipbook</title>
+    <style>
+        body { text-align: center; background-color: #f0f0f0; }
+        #flipbook { width: 800px; height: 600px; margin: 50px auto; }
+        .page { width: 100%; height: 100%; background-color: white; }
+        .page img { width: 100%; height: 100%; }
+        #startButton {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 20px;
+        }
+        #startButtonContainer {
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="startButtonContainer">
+        <button id="startButton">Start Flipbook</button>
+    </div>
+    <div id="flipbook" style="display:none;">
+<div class="page"><img src="output_images\page_1.png" alt="Cover Page"></div>
+<div class="page"><img src="output_images\page_2.png" alt="Page"></div>
+<div class="page"><img src="output_images\page_3.png" alt="Page"></div>
+<div class="page"><img src="output_images\page_4.png" alt="Page"></div>
+<div class="page"><img src="output_images\page_5.png" alt="Page"></div>
+<div class="page"><img src="output_images\page_6.png" alt="Page"></div>
+
+    </div>
+    <audio id="flip-sound" src="sounds/flip.mp3"></audio>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/turn.js/turn.js"></script>
+    <script>
+        document.getElementById('startButton').addEventListener('click', function() {
+            document.getElementById('startButtonContainer').style.display = 'none';
+            document.getElementById('flipbook').style.display = 'block';
+
+            $('#flipbook').turn({
+                width: 800,
+                height: 600,
+                autoCenter: true,
+                when: {
+                    turning: function(e, page, view) {
+                        console.log("Turning to page " + page);
+                        var flipSound = document.getElementById('flip-sound');
+                        if (flipSound) {
+                            flipSound.play().catch(error => {
+                                console.log("Audio play prevented: " + error);
+                            });
+                        }
+                    }
+                }
+            });
+
+            // Additional debugging
+            if ($('#flipbook').turn('is')) {
+                console.log('Turn.js is initialized');
+            } else {
+                console.log('Turn.js failed to initialize');
+            }
+        });
+    </script>
+</body>
+</html>
