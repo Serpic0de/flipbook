@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flipbook</title>
+    <link rel="icon" href="data:,">
     <style>
         body { text-align: center; background-color: #f0f0f0; }
         #flipbook { width: 800px; height: 600px; margin: 50px auto; }
@@ -32,44 +32,52 @@
         <button id="startButton">Start Flipbook</button>
     </div>
     <div id="flipbook" style="display:none;">
-<div class="page"><img src="output_images\page_1.png" alt="Cover Page"></div>
-<div class="page"><img src="output_images\page_2.png" alt="Page"></div>
-<div class="page"><img src="output_images\page_3.png" alt="Page"></div>
-<div class="page"><img src="output_images\page_4.png" alt="Page"></div>
-<div class="page"><img src="output_images\page_5.png" alt="Page"></div>
-<div class="page"><img src="output_images\page_6.png" alt="Page"></div>
-
+        <!-- Add your image pages here -->
     </div>
     <audio id="flip-sound" src="sounds/flip.mp3"></audio>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/turn.js/turn.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/turn.min.js"></script>
     <script>
         document.getElementById('startButton').addEventListener('click', function() {
             document.getElementById('startButtonContainer').style.display = 'none';
             document.getElementById('flipbook').style.display = 'block';
 
-            $('#flipbook').turn({
-                width: 800,
-                height: 600,
-                autoCenter: true,
-                when: {
-                    turning: function(e, page, view) {
-                        console.log("Turning to page " + page);
-                        var flipSound = document.getElementById('flip-sound');
-                        if (flipSound) {
-                            flipSound.play().catch(error => {
-                                console.log("Audio play prevented: " + error);
-                            });
+            console.log('Flipbook container HTML:', document.getElementById('flipbook').innerHTML);
+
+            try {
+                $('#flipbook').turn({
+                    width: 800,
+                    height: 600,
+                    autoCenter: true,
+                    when: {
+                        turning: function(e, page, view) {
+                            console.log("Turning to page " + page);
+                            var flipSound = document.getElementById('flip-sound');
+                            if (flipSound) {
+                                flipSound.play().catch(error => {
+                                    console.log("Audio play prevented: " + error);
+                                });
+                            }
                         }
                     }
-                }
-            });
+                });
 
-            // Additional debugging
-            if ($('#flipbook').turn('is')) {
-                console.log('Turn.js is initialized');
+                if ($('#flipbook').data('turn')) {
+                    console.log('Turn.js is initialized successfully');
+                } else {
+                    console.log('Turn.js initialization failed');
+                }
+            } catch (error) {
+                console.error('Error initializing Turn.js:', error);
+            }
+        });
+
+        $(document).ready(function() {
+            console.log("jQuery is loaded and ready.");
+            if ($('#flipbook').length) {
+                console.log('Flipbook container is set up correctly.');
             } else {
-                console.log('Turn.js failed to initialize');
+                console.log('Flipbook container is missing.');
             }
         });
     </script>
