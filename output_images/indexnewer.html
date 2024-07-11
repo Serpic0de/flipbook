@@ -21,9 +21,21 @@
             align-items: center;
             overflow: hidden;
         }
+        #warningBox {
+            display: none; /* Hide initially */
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: bold;
+            font-family: 'Roboto', sans-serif;
+            color: #911b1b;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
         #flipbook {
-            width: 800px;
-            height: 600px;
+            width: 800px; /* Adjusted width for desktop */
+            height: 600px; /* Adjusted height for desktop */
             background-color: transparent;
             border: none;
             box-shadow: none;
@@ -40,142 +52,85 @@
         }
         #startButton {
             display: inline-block;
-            padding: 15px 30px;
-            font-size: 21px;
-            font-weight: bold;
-            font-family: 'Roboto', sans-serif;
+            padding: 15px 30px; /* Increased padding for larger button */
+            font-size: 21px; /* Increased font size */
+            font-weight: bold; /* Make text bold */
+            font-family: 'Roboto', sans-serif; /* Apply special font */
             cursor: pointer;
             background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 7.5px;
+            border-radius: 7.5px; /* Increased border-radius */
             margin: 20px;
         }
         #startButtonContainer {
             text-align: center;
             margin-bottom: 20px;
-            width: 50%;
+            width: 50%; /* Center container with half the width of the screen */
         }
         #logoContainer {
             text-align: center;
             margin-bottom: 20px;
         }
         #logoContainer img {
-            width: 300px;
-            height: 300px;
-        }
-        #warningBox {
-            display: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            font-family: 'Roboto', sans-serif;
-            color: #ff0000;
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
-            border-radius: 5px;
-            margin-bottom: 20px;
+            width: 300px; /* Increased size for the logo */
+            height: 300px; /* Increased size for the logo */
         }
         /* Responsive design for smaller screens */
         @media (max-width: 1024px) {
             #flipbook {
-                width: 600px;
-                height: 450px;
+                width: 600px; /* Adjust width for smaller screens */
+                height: 450px; /* Maintain aspect ratio */
             }
             #startButtonContainer {
                 margin-top: 20px;
-                width: 70%;
+                width: 70%; /* Adjust container width for smaller screens */
             }
             #startButton {
-                padding: 12px 24px;
-                font-size: 18px;
+                padding: 12px 24px; /* Adjust padding for smaller screens */
+                font-size: 18px; /* Adjust font size for smaller screens */
             }
             #logoContainer img {
-                width: 240px;
-                height: 240px;
+                width: 240px; /* Adjust logo size for smaller screens */
+                height: 240px; /* Adjust logo size for smaller screens */
             }
         }
         @media (max-width: 768px) {
             #flipbook {
-                width: 400px;
-                height: 300px;
+                width: 400px; /* Adjust width for smaller mobile screens */
+                height: 300px; /* Maintain aspect ratio */
             }
             #startButtonContainer {
-                width: 90%;
+                width: 90%; /* Adjust container width for mobile screens */
             }
             #startButton {
-                padding: 9px 18px;
-                font-size: 15px;
+                padding: 9px 18px; /* Adjust padding for mobile screens */
+                font-size: 15px; /* Adjust font size for mobile screens */
             }
             #logoContainer img {
-                width: 210px;
-                height: 210px;
+                width: 210px; /* Adjust logo size for mobile screens */
+                height: 210px; /* Adjust logo size for mobile screens */
             }
         }
     </style>
-    <script>
-        // Disable right-click
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-
-        // Disable common keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'c' || e.key === 'i')) {
-                e.preventDefault();
-            }
-        });
-
-        // Obfuscate HTML by creating elements with JavaScript
-        document.addEventListener('DOMContentLoaded', function() {
-            const startButtonContainer = document.createElement('div');
-            startButtonContainer.id = 'startButtonContainer';
-
-            const logoContainer = document.createElement('div');
-            logoContainer.id = 'logoContainer';
-            const logoImage = document.createElement('img');
-            logoImage.src = 'sounds/logo.png';
-            logoImage.alt = 'Logo';
-            logoContainer.appendChild(logoImage);
-
-            const startButton = document.createElement('button');
-            startButton.id = 'startButton';
-            startButton.textContent = 'درباره پیشگام';
-            startButtonContainer.appendChild(logoContainer);
-            startButtonContainer.appendChild(startButton);
-
-            document.body.insertBefore(startButtonContainer, document.body.firstChild);
-
-            const warningBox = document.createElement('div');
-            warningBox.id = 'warningBox';
-            warningBox.textContent = 'Flip from the corners please';
-            document.body.insertBefore(warningBox, document.body.children[1]);
-
-            const flipbook = document.createElement('div');
-            flipbook.id = 'flipbook';
-            const pages = [
-                'output_images/page_1.png',
-                'output_images/page_2.png',
-                'output_images/page_3.png',
-                'output_images/page_4.png',
-                'output_images/page_5.png',
-                'output_images/page_6.png'
-            ];
-            pages.forEach(pageSrc => {
-                const page = document.createElement('div');
-                page.className = 'page';
-                const img = document.createElement('img');
-                img.src = pageSrc;
-                img.alt = 'Page';
-                page.appendChild(img);
-                flipbook.appendChild(page);
-            });
-            document.body.appendChild(flipbook);
-        });
-    </script>
 </head>
 <body>
-    <!-- Placeholder for dynamically created content -->
+    <div id="startButtonContainer">
+        <div id="logoContainer">
+            <img src="sounds/logo.png" alt="Logo">
+        </div>
+        <button id="startButton">درباره پیشگام</button>
+    </div>
+    <div id="warningBox">از گوشه راست صفحات ورق بزنید</div>
+    <div id="flipbook">
+        <div class="page"><img src="output_images/page_1.png" alt="Cover Page"></div>
+        <div class="page"><img src="output_images/page_2.png" alt="Page 2"></div>
+        <div class="page"><img src="output_images/page_3.png" alt="Page 3"></div>
+        <div class="page"><img src="output_images/page_4.png" alt="Page 4"></div>
+        <div class="page"><img src="output_images/page_5.png" alt="Page 5"></div>
+        <div class="page"><img src="output_images/page_6.png" alt="Page 6"></div>
+    </div>
+    <!-- Preload multiple audio elements for instant playback -->
     <div id="audio-container">
         <audio id="flip-sound1" src="sounds/flip.mp3" preload="auto"></audio>
         <audio id="flip-sound2" src="sounds/flip.mp3" preload="auto"></audio>
