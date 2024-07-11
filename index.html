@@ -21,6 +21,18 @@
             align-items: center;
             overflow: hidden;
         }
+        #warningBox {
+            display: none; /* Hide initially */
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: bold;
+            font-family: 'Roboto', sans-serif;
+            color: #911b1b;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
         #flipbook {
             width: 800px; /* Adjusted width for desktop */
             height: 600px; /* Adjusted height for desktop */
@@ -109,6 +121,7 @@
         </div>
         <button id="startButton">درباره پیشگام</button>
     </div>
+    <div id="warningBox">از گوشه راست صفحات ورق بزنید</div>
     <div id="flipbook">
         <div class="page"><img src="output_images/page_1.png" alt="Cover Page"></div>
         <div class="page"><img src="output_images/page_2.png" alt="Page 2"></div>
@@ -146,6 +159,7 @@
 
             $('#startButton').on('click', function() {
                 $('#startButtonContainer').hide();
+                $('#warningBox').show();
                 $('#flipbook').show().turn({
                     width: $('#flipbook').width(),
                     height: $('#flipbook').height(),
