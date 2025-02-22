@@ -233,6 +233,19 @@
     <script src="js/jquery/dist/jquery.min.js"></script>
     <script src="js/turn.js/turn.js"></script>
     <script>
+
+         // Disable right-click
+         document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // Disable common keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'c' || e.key === 'i')) {
+                e.preventDefault();
+            }
+        });
+        
         document.addEventListener('DOMContentLoaded', function() {
             var flipSounds = [
                 document.getElementById('flip-sound1'),
