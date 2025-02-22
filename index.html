@@ -88,14 +88,15 @@
 </head>
 <body>
     <div id="startButtonContainer">
-        <div>
+        <div id="logoContainer">
+            <img src="sounds/logo.png" alt="Logo">
+
             <audio controls>
                 <source src="sounds/vigen.mp3" type="audio/mpeg">
               Your browser does not support the audio element.
               </audio>
-        </div>
-        <div id="logoContainer">
-            <img src="sounds/logo.png" alt="Logo">
+
+              
         </div>
         <button id="startButton"> نمایش آلبوم قشنگمون🎁🤞 </button>
     </div>
@@ -245,7 +246,7 @@
                 e.preventDefault();
             }
         });
-        
+
         document.addEventListener('DOMContentLoaded', function() {
             var flipSounds = [
                 document.getElementById('flip-sound1'),
