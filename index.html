@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💕Saba Mazgan</title>
+    <title>​​💕Saba Mazgan</title>
     <!-- Favicon -->
     <link rel="icon" href="sounds/logo.png" type="image/png">
     <!-- Google Fonts Link -->
@@ -102,10 +102,31 @@
         <div class="page"><img src="output_images/page_5.png" alt="Page"></div>
         <div class="page"><img src="output_images/page_6.png" alt="Page"></div>
     </div>
+    <div id="audio-container">
+        <audio id="flip-sound1" src="sounds/flip.mp3" preload="auto"></audio>
+        <audio id="flip-sound2" src="sounds/flip.mp3" preload="auto"></audio>
+        <audio id="flip-sound3" src="sounds/flip.mp3" preload="auto"></audio>
+    </div>
     <script src="js/jquery/dist/jquery.min.js"></script>
     <script src="js/turn.js/turn.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            var flipSounds = [
+                document.getElementById('flip-sound1'),
+                document.getElementById('flip-sound2'),
+                document.getElementById('flip-sound3')
+            ];
+            var currentSoundIndex = 0;
+
+            function playFlipSound() {
+                var flipSound = flipSounds[currentSoundIndex];
+                flipSound.currentTime = 0;
+                flipSound.play().catch(error => {
+                    console.log("Audio play prevented: " + error);
+                });
+                currentSoundIndex = (currentSoundIndex + 1) % flipSounds.length;
+            }
+
             document.getElementById('startButton').addEventListener('click', function() {
                 document.getElementById('startButtonContainer').style.display = 'none';
                 document.getElementById('warningBox').style.display = 'block';
@@ -113,7 +134,13 @@
                 $('#flipbook').turn({
                     width: $('#flipbook').width(),
                     height: $('#flipbook').height(),
-                    autoCenter: true
+                    autoCenter: true,
+                    when: {
+                        turning: function(e, page, view) {
+                            console.log("Turning to page " + page);
+                            playFlipSound();
+                        }
+                    }
                 });
             });
         });
