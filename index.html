@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>​​💕Saba Mazgan</title>
     <!-- Favicon -->
     <link rel="icon" href="sounds/logo.png" type="image/png">
@@ -21,16 +20,6 @@
             padding: 0;
             height: 100vh;
             overflow: hidden;
-        }
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.505); /* Optional, for better visibility */
-            text-align: center;
-            padding: 10px;
-            color: white;
         }
         #flipbook {
             width: 500px;
@@ -88,12 +77,6 @@
                 top: 50%;
                 left: 50%;
             }
-            footer {
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-                background-color: rgba(0, 0, 0, 0.188); /* Optional, for better visibility */
-            }
             #logoContainer img {
                 width: 200px;
                 height: 200px;
@@ -110,6 +93,12 @@
         
         <div id="logoContainer">
             <img src="sounds/logo.png" alt="Logo">
+        </div>
+        <div>
+            <audio controls>
+                <source src="sounds/vigen.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+              </audio>
         </div>
         <button id="startButton"> نمایش آلبوم قشنگمون🎁🤞 </button>
     </div>
@@ -296,12 +285,4 @@
         });
     </script>
 </body>
-<footer>
-   
-        <audio controls>
-            <source src="sounds/vigen.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-          </audio>
-    
-</footer>
 </html>
